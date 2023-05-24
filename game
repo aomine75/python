@@ -1,0 +1,44 @@
+import random
+
+choix_possibles = ["pierre", "feuille", "ciseaux"]
+score_joueur = 0
+score_ordi = 0
+parties = 0
+
+while True:
+    # Demande au joueur de faire un choix
+    print("Choisissez :")
+    print("1. Pierre")
+    print("2. Feuille")
+    print("3. Ciseaux")
+    choix_joueur = int(input("Votre choix (1-3) : "))
+
+    if choix_joueur < 1 or choix_joueur > 3:
+        print("Choix invalide. Veuillez choisir un nombre entre 1 et 3.")
+        continue
+
+    choix_joueur -= 1  # Ajuste l'indice pour correspondre à la liste
+
+    choix_ordi = random.randint(0, 2)
+
+    print("Vous avez choisi :", choix_possibles[choix_joueur])
+    print("L'ordinateur a choisi :", choix_possibles[choix_ordi])
+
+    if choix_joueur == choix_ordi:
+        print("Égalité !")
+    elif (choix_joueur == 0 and choix_ordi == 2) or (choix_joueur == 1 and choix_ordi == 0) or (choix_joueur == 2 and choix_ordi == 1):
+        print("Vous avez gagné la partie !")
+        score_joueur += 1
+    else:
+        print("L'ordinateur a gagné la partie !")
+        score_ordi += 1
+
+    parties += 1
+
+    choix_continuer = input("Voulez-vous continuer ? (Oui/Non) : ")
+    if choix_continuer.lower() != "oui":
+        break
+
+print("Nombre total de parties :", parties)
+print("Score final - Joueur :", score_joueur)
+print("Score final - Ordinateur :", score_ordi)
